@@ -1,0 +1,122 @@
+.dropdown-toggle::after{
+    content: none;
+}
+body.dark-mode {
+    background-color: #222;
+    color: #fff;
+}
+
+body{
+    background-image: url(/Front-End);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    scroll-behavior: smooth;
+    font-family: 'Playpen Sans', cursive;
+}
+
+/* Stili per il tema Light */
+body.light-mode {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Stile per lo switch */
+.theme-switch {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+
+
+.form-switch .form-check-input{
+    --bs-form--bs-form-switch-bg: url(/Front-End/Icone/moon-stars-fill.svg);
+    background-image: var(--bs-form--bs-form-switch-bg);
+    width: 1em;
+    background-color: transparent;
+    border: none;
+}
+
+.form-switch .form-check-input:checked{
+    --bs-form--bs-form-switch-bg: url(/Front-End/Icone/brightness-high-fill.svg);
+    background-image: var(--bs-form--bs-form-switch-bg);
+    
+}
+
+.form-check-input:focus{
+    box-shadow: none;
+}
+
+#footer{
+    margin-top: 40px;
+    background-color: rgb(59, 59, 225);
+}
+
+#navbar{
+    background-color: rgb(59, 59, 225);
+}
+
+#form-containerLogin{
+    width: 380px;
+}
+
+#form-containerRegister{
+    width: 480px;
+    
+}
+
+legend{
+    background-color: rgb(63, 63, 63);
+    padding: .4px;
+}
+
+#Progress-bar{
+    width: 100%;
+    height: 7px;
+    max-width: 100%;
+}
+
+#al{
+    font-size: 15px;
+}
+
+.label{
+    font-family: 'Kalam', cursive;
+    font-weight: 300;
+    font-size: larger;
+}
+
+#bodyLogin-Register{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#introduzione h2{
+    font-family: 'Kalam', cursive;
+    text-align: center;
+    font-weight: 400;
+}
+
+
+.passaggio{
+    padding: 5px;
+    background: color-mix(in srgb-linear, rgb(71, 71, 214) 10%, blue 30%);
+    border: 1px solid;
+}
+
+#contenuto-row{
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+#btn-passaggi{
+    width: 100%;
+    justify-content: center;
+}
