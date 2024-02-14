@@ -1,5 +1,9 @@
 body{
-    /* in url si richiama la funzione php che restituisce il percorso della foto */
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-attachment: scroll;
+    
+    background-size: 100%;
 }
 
 #navbar{
