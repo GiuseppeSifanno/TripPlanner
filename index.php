@@ -40,13 +40,22 @@
                 </nav>
             </div>
         </header>
-        <span class="container-md container-fluid my-4" style="position: absolute; display:inline; width: 45%; height: fit-content; color: white; text-wrap:pretty">
+        <span class="container-md container-fluid my-5" style="position: absolute; display: flow ; width: 55%; 
+                    height: fit-content; color: whitesmoke; text-wrap:pretty;" id="introduzione">
             <h1>Pianifica al miglior modo tutte le tue tappe del tuo viaggio</h1>
-            <h3 class="my-3">
+            <h3 class="my-4">
                 Utilizza i nostri strumenti per creare mappe aggiungendo, rimuovendo e modificando le varie tappe a seconda
                 dei casi
             </h3>
-            <button class="btn">INIZIA</button>
+            <div class="btn-group column-gap-3" id="bottoni-group" role="group">
+                <div id="btn-inizia-ctn" class="my-2 my-1">
+                    <button class="btn p-2" id="btn-inizia" style="overflow-wrap: break-word ;">CREA IL TUO PRIMO VIAGGIO</button>
+                </div>
+                <div id="btn-inizia-ctn" class="my-2">
+                    <button class="btn p-2" id="btn-login">ACCEDI</button>
+                </div>
+            </div>
+            
         </span>
         </div>
         
@@ -59,6 +68,7 @@
                     document.body.style.backgroundImage = "linear-gradient(to right, rgba(12, 12, 12, 0.782), rgba(53, 50, 50, 0.327)),".concat(img);
                     document.body.id = "sfondo";
                 }
+                //si puo nascondere il percorso
                 xhttp.open('POST', "/TripPlanner/Server/getImmagine.php");
                 xhttp.send();
             }

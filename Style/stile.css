@@ -13,6 +13,38 @@
     box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width);
 }
 
+#bottoni-group{
+    border: none;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+
+
+
+#btn-inizia{
+    width: 100%;
+    position: relative;
+    border: solid black 1px;
+    border-color: rgba(0, 0, 0, 0.282);
+    color: whitesmoke;
+}
+
+#btn-login{
+    width: 100%;
+    position: relative;
+    border: solid rgba(0, 0, 0, 0.282) 1px;
+    color: whitesmoke;
+}
+
+#btn-inizia:hover{
+    box-shadow: -0.1em 0.8em 15px rgba(0, 0, 0, 0.748);
+}
+
+#btn-login:hover{
+    box-shadow: 0.1em 0.8em 15px rgba(0, 0, 0, 0.748);
+}
+
 legend{
     background-color: rgb(63, 63, 63);
     padding: .4px;
@@ -34,13 +66,6 @@ legend{
     font-weight: 300;
     font-size: larger;
 }
-
-#introduzione{
-    width: 45%;
-    height: fit-content;
-    color: white;
-}
-
 
 .passaggio{
     padding: 5px;
