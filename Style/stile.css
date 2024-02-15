@@ -1,15 +1,17 @@
-body{
+#sfondo{
     background-repeat: no-repeat;
-    background-position: 0 0;
-    background-attachment: scroll;
-    
-    background-size: 100%;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 #navbar{
     background-color: aquamarine;
 }
 
+.navbar-toggler:focus {
+    --bs-navbar-toggler-focus-width: 0.10em;
+    box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width);
+}
 
 legend{
     background-color: rgb(63, 63, 63);
@@ -33,10 +35,10 @@ legend{
     font-size: larger;
 }
 
-#introduzione h2{
-    font-family: 'Kalam', cursive;
-    text-align: center;
-    font-weight: 400;
+#introduzione{
+    width: 45%;
+    height: fit-content;
+    color: white;
 }
 
 
