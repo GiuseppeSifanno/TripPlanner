@@ -73,7 +73,20 @@ legend{
 }
 
 #ctn-register{
-    width: 500px;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 70px;
+}
+
+#ctn-login{
+    width: fit-content;
+    height: fit-content;
+    margin-top: 140px;
+}
+
+#Form{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.125);
 }
 
 #Progress-bar{

@@ -55,13 +55,12 @@
                 </div>
                 <div id="btn-inizia-ctn" class="my-2">
                     <button class="btn p-2" id="btn-login">
-                        <a href="#" id="link">ACCEDI</a>
+                        <a href="login.php" id="link">ACCEDI</a>
                     </button>
                 </div>
             </div>
         </span>
         </div>
-        
 
         <script type="text/javascript">
             function setFoto(){
