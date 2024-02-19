@@ -49,13 +49,16 @@
             </h3>
             <div class="btn-group column-gap-3" id="bottoni-group" role="group">
                 <div id="btn-inizia-ctn" class="my-2 my-1">
-                    <button class="btn p-2" id="btn-inizia" style="overflow-wrap: break-word ;">CREA IL TUO PRIMO VIAGGIO</button>
+                    <button class="btn p-2" id="btn-inizia" style="overflow-wrap: break-word;">
+                        <a href="register.php" id="link">CREA IL TUO PRIMO VIAGGIO</a> 
+                    </button>
                 </div>
                 <div id="btn-inizia-ctn" class="my-2">
-                    <button class="btn p-2" id="btn-login">ACCEDI</button>
+                    <button class="btn p-2" id="btn-login">
+                        <a href="#" id="link">ACCEDI</a>
+                    </button>
                 </div>
             </div>
-            
         </span>
         </div>
         
