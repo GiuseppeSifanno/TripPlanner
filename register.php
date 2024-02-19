@@ -14,9 +14,9 @@
             crossorigin="anonymous"></script>
     </head>
 
-    <body>
-        <div class="container-fluid rounded-2" id="ctn-register">
-            <form action="https://youtu.be/dQw4w9WgXcQ?si=pG9IO7zAbfqTBfBB" method="post" class="form-control shadow-lg"
+    <body onload=setFoto()>
+        <div class="container rounded-2 flex-lg-wrap" id="ctn-register">
+            <form action="https://youtu.be/dQw4w9WgXcQ?si=pG9IO7zAbfqTBfBB" method="post" class="form-control shadow-lg border-1"
                 id="Form" oninput=Controlla()>
                 <fieldset>
                     <div class="form-group row my-1">
@@ -47,17 +47,17 @@
                             aria-describedby="passwordHelpBlock" onkeyup="ValidaPassword()" required
                             pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
 
-
                         <p id="al" class="my-1" style="height: 15px;"></p>
                         <div class="progress my-2" id="Progress-bar" role="progressbar" aria-label="ProgressBar"
                             aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                             <div class="progress-bar" id="bar"></div>
                         </div>
 
-
                         <div id="passwordHelpBlock" class="form-text">
-                            La password deve essere di almeno 8 caratteri contenenti almeno una lettera minuscola e una
-                            maiuscola, un numero ed un simbolo
+                            <p style="color: whitesmoke;">
+                                La password deve essere di almeno 8 caratteri contenenti almeno una lettera minuscola e una
+                                maiuscola, un numero ed un simbolo
+                            </p>
                         </div>
                     </div>
 
@@ -79,10 +79,20 @@
             </form>
         </div>
 
+        <script type="text/javascript">
+            function setFoto(){
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload =function() {
+                    let img = "url(/TripPlanner/Sfondi/".concat(xhttp.responseText);
+                    document.body.style.backgroundImage = "linear-gradient(to right, rgba(12, 12, 12, 0.782), rgba(53, 50, 50, 0.327)),".concat(img);
+                    document.body.id = "sfondo";
+                }
+                //si puo nascondere il percorso
+                xhttp.open('POST', "/TripPlanner/Server/getImmagine.php");
+                xhttp.send();
+            }
+        </script>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
         <script>
             let button = document.getElementById("Submit");
             var nome = document.getElementById("Nome");
@@ -179,21 +189,21 @@
 
                 if (x == 100) {
                     bar.style.backgroundColor = "green";
-                    al.innerHTML = "Very strong";
+                    al.innerHTML = "Molto forte";
                 }
 
                 if (x > 40 && x <= 80) {
                     bar.style.backgroundColor = "green";
-                    al.innerHTML = "Strong";
+                    al.innerHTML = "Forte";
                 }
                 if (x <= 40 && x > 20) {
                     bar.style.backgroundColor = "yellow";
 
-                    al.innerHTML = "Good";
+                    al.innerHTML = "Buona";
                 }
                 if (x <= 20) {
                     bar.style.backgroundColor = "red";
-                    al.innerHTML = "Weak";
+                    al.innerHTML = "Debole";
                 }
                 if (password.length == 0) {
                     x == 0;
@@ -202,7 +212,7 @@
                 //white spaces
                 var check5 = /\s\S/;
                 if (check5.test(password)) {
-                    al.innerHTML = "Password must not contain white spaces";
+                    al.innerHTML = "La password non deve contenere spazi!";
                     bar.style.backgroundColor = "red";
                 }
             }
