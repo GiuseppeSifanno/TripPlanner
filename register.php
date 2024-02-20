@@ -16,27 +16,27 @@
 
     <body onload=setFoto()>
         <div class="container rounded-2 flex-lg-wrap" id="ctn-register">
-            <form action="https://youtu.be/dQw4w9WgXcQ?si=pG9IO7zAbfqTBfBB" method="post" class="form-control shadow-lg border-1"
+            <form action="./Server/registrazione.php" method="post" class="form-control shadow-lg border-1"
                 id="Form" oninput=Controlla()>
                 <fieldset>
                     <div class="form-group row my-1">
                         <div class="col">
                             <label for="Nome" class="form-label label">Nome</label>
                             <input type="text" id="Nome" name="Nome" class="form-control" placeholder="Inserisci il nome"
-                                required>
+                                required maxlength="30">
                         </div>
 
                         <div class="col">
                             <label for="Cognome" class="form-label label">Cognome</label>
                             <input type="text" id="Cognome" name="Cognome" class="form-control"
-                                placeholder="Inserisci il cognome" required>
+                                placeholder="Inserisci il cognome" required maxlength="30">
                         </div>
                     </div>
 
                     <div class="form-group my-3">
                         <label for="Email" class="form-label label">Inserisci la tua email</label>
                         <input type="email" class="form-control" name="Email" id="Email" placeholder="email@example.com"
-                            required>
+                            required maxlength="60">
                     </div>
                 </fieldset>
                 <legend></legend>
@@ -45,7 +45,7 @@
                         <label for="Password" class="form-label label">Crea una password</label>
                         <input type="password" class="form-control" name="Password" id="Password" placeholder="Password"
                             aria-describedby="passwordHelpBlock" onkeyup="ValidaPassword()" required
-                            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
+                            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" maxlength="30">
 
                         <p id="al" class="my-1" style="height: 15px;"></p>
                         <div class="progress my-2" id="Progress-bar" role="progressbar" aria-label="ProgressBar"
@@ -64,7 +64,7 @@
                     <div class="form-group my-2">
                         <label for="PasswordRipetuta" class="form-label label">Ripeti la tua password</label>
                         <input type="password" class="form-control" name="PasswordRipetuta" id="PasswordRipetuta"
-                            placeholder="Ripeti la tua password" required>
+                            placeholder="Ripeti la tua password" required maxlength="30">
                     </div>
                 </fieldset>
 
@@ -76,6 +76,9 @@
                             style="margin: 0;">
                     </div>
                 </fieldset>
+                <div style="text-align: end;">
+                    <p style="margin-bottom: 0;">Oppure <a href="login.php">accedi</a></p>
+                </div>
             </form>
         </div>
 
@@ -111,7 +114,7 @@
                 console.log("Valore di sem: ", sem);
 
                 //i criteri usati qui devono essere rispettati nel DB
-                if (nome.value.length < 1 || nome.value.length > 25) {
+                if (nome.value.length < 1 || nome.value.length > 30) {
                     nome.classList.add("is-invalid");
                     sem = true;
                 }
@@ -184,7 +187,6 @@
                 if (password.length >= 10) {
                     x += + 20;
                 }
-                console.log(x);
                 bar.style.width = x + "%";
 
                 if (x == 100) {
@@ -216,7 +218,6 @@
                     bar.style.backgroundColor = "red";
                 }
             }
-
         </script>
     </body>
 </html>

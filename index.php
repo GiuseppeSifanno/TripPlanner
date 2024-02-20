@@ -14,52 +14,52 @@
     </head>
     <body onload=setFoto()>
         <div class="container">
-        <header>
-            <div class="container-md container-fluid">
-                <nav class="navbar navbar-expand-sm" id="navbar">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="#">Nome del sito</a>
-                        <button class="navbar-toggler border-0" id="nav-menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse justify-content-end" id="navbarText">
-                            <ul class="navbar-nav mb-2 mb-lg-0 column-gap-5">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Crea il tuo viaggio</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link img-thumbnail" href="#">
-                                        <img src="/TripPlanner/Icone/account_circle_FILL0_wght400_GRAD0_opsz24.svg"
-                                            class="text-decoration-none">
-                                    </a>
-                                </li>
-                            </ul>
+            <header>
+                <div class="container-md container-fluid">
+                    <nav class="navbar navbar-expand-sm" id="navbar">
+                        <div class="container-fluid">
+                            <a class="navbar-brand" href="#">Nome del sito</a>
+                            <button class="navbar-toggler border-0" id="nav-menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse justify-content-end" id="navbarText">
+                                <ul class="navbar-nav mb-2 mb-lg-0 column-gap-5">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="#">Crea il tuo viaggio</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link img-thumbnail" href="#">
+                                            <img src="/TripPlanner/Icone/account_circle_FILL0_wght400_GRAD0_opsz24.svg"
+                                                class="text-decoration-none">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
+                    </nav>
+                </div>
+            </header>
+            <span class="container-md container-fluid my-5" style="position: absolute; display: flow ; width: 55%; 
+                        height: fit-content; color: whitesmoke; text-wrap:pretty;" id="introduzione">
+                <h1>Pianifica al miglior modo tutte le tue tappe del tuo viaggio</h1>
+                <h3 class="my-4">
+                    Utilizza i nostri strumenti per creare mappe aggiungendo, rimuovendo e modificando le varie tappe a seconda
+                    dei casi
+                </h3>
+                <div class="btn-group column-gap-3" id="bottoni-group" role="group">
+                    <div id="btn-inizia-ctn" class="my-2 my-1">
+                        <button class="btn p-2" id="btn-inizia" style="overflow-wrap: break-word;">
+                            <a href="register.php" id="link">CREA IL TUO PRIMO VIAGGIO</a> 
+                        </button>
                     </div>
-                </nav>
-            </div>
-        </header>
-        <span class="container-md container-fluid my-5" style="position: absolute; display: flow ; width: 55%; 
-                    height: fit-content; color: whitesmoke; text-wrap:pretty;" id="introduzione">
-            <h1>Pianifica al miglior modo tutte le tue tappe del tuo viaggio</h1>
-            <h3 class="my-4">
-                Utilizza i nostri strumenti per creare mappe aggiungendo, rimuovendo e modificando le varie tappe a seconda
-                dei casi
-            </h3>
-            <div class="btn-group column-gap-3" id="bottoni-group" role="group">
-                <div id="btn-inizia-ctn" class="my-2 my-1">
-                    <button class="btn p-2" id="btn-inizia" style="overflow-wrap: break-word;">
-                        <a href="register.php" id="link">CREA IL TUO PRIMO VIAGGIO</a> 
-                    </button>
+                    <div id="btn-inizia-ctn" class="my-2">
+                        <button class="btn p-2" id="btn-login">
+                            <a href="login.php" id="link">ACCEDI</a>
+                        </button>
+                    </div>
                 </div>
-                <div id="btn-inizia-ctn" class="my-2">
-                    <button class="btn p-2" id="btn-login">
-                        <a href="login.php" id="link">ACCEDI</a>
-                    </button>
-                </div>
-            </div>
-        </span>
+            </span>
         </div>
 
         <script type="text/javascript">
