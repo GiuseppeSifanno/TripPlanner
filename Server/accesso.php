@@ -1,4 +1,4 @@
-<?php 
+<?php
     require_once("credenziali.php");
     $conn = new mysqli($host, $username, $password, $db_nome);
 
@@ -6,17 +6,17 @@
 
     $mail = $_POST['Email'];
 
-    $sql = "SELECT Email FROM Utente";
+    $sql = "SELECT Email, Password FROM Utente WHERE Email = '$mail'";
+    echo "SELECT Email, Password FROM Utente WHERE Email = '$mail'";
 
     $result = $conn -> query($sql);
 
-    if($result -> num_rows >= 0){
-        $row = $result -> fetch_array();
-        $i = 0;
-        while($i < count($row)){
-            if($mail == $row[$i]){
-                //accesso
-            }
-            $i++;
+    if($result == false) die("Email non registrata");
+    else {
+        if($result -> fetch_column(1) === md5($_POST['Password']) ) {
+            //accesso consentito, indirizzamento alla sua area privata
         }
-    }
+        else {
+            //accesso non consentito, deve reinserire la password
+        }
+    }; 
