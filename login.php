@@ -17,7 +17,7 @@
     <body onload=setFoto()>
         <div class="container rounded-2 flex-lg-wrap" id="ctn-login">
             <form action="./Server/accesso.php" method="post" class="form-control shadow-lg border-1"
-                id="Form">
+                id="Form" target="_self">
                 <div class="form-group">
                     <label for="Email" class="form-label label">Inserisci la tua email</label>
                     <input type="email" class="form-control" name="Email" id="Email" placeholder="email@example.com"

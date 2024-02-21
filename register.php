@@ -12,11 +12,15 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
+            <?php 
+                session_start();
+                include("./Server/registrazione.php")
+            ?>
     </head>
 
     <body onload=setFoto()>
         <div class="container rounded-2 flex-lg-wrap" id="ctn-register">
-            <form action="./Server/registrazione.php" method="post" class="form-control shadow-lg border-1"
+            <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" class="form-control shadow-lg border-1"
                 id="Form" oninput=Controlla()>
                 <fieldset>
                     <div class="form-group row my-1">
@@ -71,7 +75,7 @@
                 <fieldset>
                     <div class="btn-group my-2 col-12 column-gap-2" role="group">
                         <input type="submit" class="btn btn-sm btn-success rounded-1 w-50" id="Submit" value="Invia"
-                            disabled>
+                            disabledv name="Invia">
                         <input type="reset" class="btn btn-sm btn-danger rounded-1 w-50" id="Reset" value="Cancella"
                             style="margin: 0;">
                     </div>
@@ -81,6 +85,15 @@
                 </div>
             </form>
         </div>
+
+        <?php
+            if($_POST['Invia']){
+                if(registrazione()){
+					echo "Top lo zi";
+                	header("index.php");
+                }
+            }
+        ?>
 
         <script type="text/javascript">
             function setFoto(){
