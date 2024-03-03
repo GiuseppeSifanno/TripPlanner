@@ -1,11 +1,12 @@
 <?php
 function registrazione(){
     session_start();
-    $nome = $_POST['Nome'];
-    $cognome = $_POST['Cognome'];
-    $mail = $_POST['Email'];
-    $password =$_POST['Password'];
     require_once("credenziali.php");
+    $nome = $_SESSION['Nome'];
+    $cognome = $_SESSION['Cognome'];
+    $mail = $_SESSION['Email'];
+    $password =$_POST['Password'];
+    
     $conn = new mysqli($host, $username, $password, $db_nome);
 
     if($conn == false) die("Errore nella connessione con il database ".mysqli_connect_error());
@@ -15,14 +16,11 @@ function registrazione(){
     $result = $conn -> query($sql);
 
     if($result !== false){
-        $i = 0;
-        while($i < $result -> num_rows){
-            $row = $result -> fetch_row();
-            if($mail === $row[0]){
-                echo "Mail gia esistente";
-                exit();
+        while($row = $result -> fetch_assoc()){
+            if($mail === $row['Email']){
+                //se l'email esiste gia' viene mostrato un alert al client
+                return false;
             }
-            $i++;
         }
         
         $password = md5($password);
@@ -32,11 +30,12 @@ function registrazione(){
         $sql = "INSERT INTO Utente (Id, Nome, Cognome, Email, Password, Hash) VALUES (NULL,'".$nome."', '".$cognome."', '".$mail."', '".$password."', '".$Hash."')";
         echo "INSERT INTO Utente (Id, Nome, Cognome, Email, Password, Hash) VALUES (NULL,'".$nome."', '".$cognome."', '".$mail."', '".$password."', '".$Hash."')";
 
-        if($conn -> query($sql) == true) {
-            echo "Inserimento andato a buon fine";
+        //informazioni salvate correttamente nel db, lo comunichiamo al client e interrompiamo l'esecuzione
+        if($conn -> query($sql)) {
             $conn -> close();
             return true;
         }
+        //query non andata a buon fine, lo comunichiamo al client e interrompiamo l'esecuzione
         else {
             $conn -> close();
             die("Errore nell'inserimento ".mysqli_error($conn));
