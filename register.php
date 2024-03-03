@@ -20,6 +20,14 @@
 
     <body onload=setFoto()>
         <div class="container rounded-2 flex-lg-wrap" id="ctn-register">
+            <div id="alert" style="visibility: hidden;">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <div id="messaggio">
+                        Quest email è già in uso. Se sei già registrato <a href="/TripPlanner/login.php" rel="noreferrer" class="alert-link">Accedi</a>
+                    </div>
+                    <button type="button" style="box-shadow: none;" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
             <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" class="form-control shadow-lg border-1"
                 id="Form" oninput=Controlla()>
                 <fieldset>
@@ -27,20 +35,20 @@
                         <div class="col">
                             <label for="Nome" class="form-label label">Nome</label>
                             <input type="text" id="Nome" name="Nome" class="form-control" placeholder="Inserisci il nome"
-                                required maxlength="30">
+                                required maxlength="30" value="<?php if($_SESSION['Nome']) echo $_SESSION['Nome'] ?>">
                         </div>
 
                         <div class="col">
                             <label for="Cognome" class="form-label label">Cognome</label>
                             <input type="text" id="Cognome" name="Cognome" class="form-control"
-                                placeholder="Inserisci il cognome" required maxlength="30">
+                                placeholder="Inserisci il cognome" required maxlength="30" value="<?php if($_SESSION['Nome']) echo $_SESSION['Cognome'] ?>">
                         </div>
                     </div>
 
                     <div class="form-group my-3">
                         <label for="Email" class="form-label label">Inserisci la tua email</label>
                         <input type="email" class="form-control" name="Email" id="Email" placeholder="email@example.com"
-                            required maxlength="60">
+                            required maxlength="60" value="<?php if($_SESSION['Nome']) echo $_SESSION['Email'] ?>">
                     </div>
                 </fieldset>
                 <legend></legend>
@@ -88,12 +96,18 @@
 
         <?php
             if($_POST['Invia']){
-                if(registrazione()){
-					echo "Top lo zi";
-                	header("index.php");
+                $_SESSION['Nome'] = $_POST['Nome'];
+                $_SESSION['Cognome'] = $_POST['Cognome'];
+                $_SESSION['Email'] = $_POST['Email'];
+                if(registrazione()) header('Location: index.php');
+                else {
+                    echo "<script>var alertmsg = document.getElementById('alert');alertmsg.style.visibility = 'visible';</script>";
                 }
             }
         ?>
+
+        <script>
+    </script>
 
         <script type="text/javascript">
             function setFoto(){

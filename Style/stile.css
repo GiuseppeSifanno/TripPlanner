@@ -75,7 +75,7 @@ legend{
 #ctn-register{
     width: fit-content;
     height: fit-content;
-    margin-top: 70px;
+    margin-top: 55px;
 }
 
 #ctn-login{
@@ -103,4 +103,13 @@ legend{
     font-family: 'Kalam', cursive;
     font-weight: 300;
     font-size: larger;
+}
+
+
+/* stile relativo all'alert */
+
+#alert{
+    z-index: 0;
+    width: fit-content;
+    height: fit-content;
 }
