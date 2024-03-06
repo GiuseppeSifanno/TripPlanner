@@ -1,22 +1,32 @@
 <?php
-    require_once("credenziali.php");
-    $conn = new mysqli($host, $username, $password, $db_nome);
+    function Accedi(){
+        session_start();
+        require_once "credenziali.php";
 
-    if($conn == false) die("Errore nella connessione con il database ".mysqli_connect_error());
+        $mail = strtolower(stripslashes($_SESSION['Email']));
+        $psw = stripslashes($_POST['Password']);
 
-    $mail = $_POST['Email'];
+        $conn = new mysqli($host, $username, $password, $db_nome);
 
-    $sql = "SELECT Email, Password FROM Utente WHERE Email = '$mail'";
-    echo "SELECT Email, Password FROM Utente WHERE Email = '$mail'";
+        if($conn == false) return "Errore nella connessione. Codice: ".mysqli_connect_error();
 
-    $result = $conn -> query($sql);
+        $sql = "SELECT Email, Password FROM ".$db_nome.".Utente WHERE Email = '$mail'";
 
-    if($result == false) die("Email non registrata");
-    else {
-        if($result -> fetch_column(1) === md5($_POST['Password']) ) {
-            //accesso consentito, indirizzamento alla sua area privata
+        $result = $conn -> query($sql);
+
+        //la mail non è presente nel db quindi è disponibile
+        if($result -> num_rows == 1){
+            $pswHash = md5($psw);
+            $row = $result -> fetch_assoc();
+            
+            if($pswHash == $row['Password']){
+                $conn -> close();
+                return true;
+            } 
+            else{
+                $conn -> close();
+                return "Password non corretta, riprova";
+            } 
         }
-        else {
-            //accesso non consentito, deve reinserire la password
-        }
-    }; 
+        else return "L'email non esiste. Controlla che sia corretta oppure <a href='/TripPlanner/register.php' class='alert-link'>registrati</a>";
+    }

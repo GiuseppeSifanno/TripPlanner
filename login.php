@@ -12,38 +12,10 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
-            <?php 
-                session_start();
-                include("./Server/accesso.php")
-            ?>
-    </head>
-
-    <body onload=setFoto()>
-        <div class="container rounded-2 flex-lg-wrap" id="ctn-login">
-            <form action="./Server/accesso.php" method="post" class="form-control shadow-lg border-1"
-                id="Form" target="_self">
-                <div class="form-group">
-                    <label for="Email" class="form-label label">Inserisci la tua email</label>
-                    <input type="email" class="form-control" name="Email" id="Email" placeholder="email@example.com"
-                        required>
-                </div>
-                <div class="form-group my-1">
-                    <label for="Password" class="form-label label">Inserisci la tua password</label>
-                    <input type="password" class="form-control" name="Password" id="Password" placeholder="Password"
-                        aria-describedby="passwordHelpBlock" onkeyup="ValidaPassword()" required
-                        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
-                <div class="btn-group my-3 col-12 column-gap-2" role="group">
-                    <input type="submit" class="btn btn-sm btn-success rounded-1 w-50" id="Submit" value="Invia"
-                        disabled>
-                    <input type="reset" class="btn btn-sm btn-danger rounded-1 w-50" id="Reset" value="Cancella"
-                        style="margin: 0;">
-                </div>
-                <div style="text-align: end;">
-                    <p style="margin-bottom: 0;">Oppure <a href="register.php">registrati</a></p>
-                </div>
-            </form>
-        </div>
-
+        <?php 
+            session_start();
+            include "./Server/accesso.php";
+        ?>
         <script type="text/javascript">
             function setFoto(){
                 const xhttp = new XMLHttpRequest();
@@ -56,6 +28,52 @@
                 xhttp.open('POST', "/TripPlanner/Server/getImmagine.php");
                 xhttp.send();
             }
+            setFoto();
         </script>
+    </head>
+
+    <body>
+        <div class="container rounded-2 flex-lg-wrap" id="ctn-login">
+            <div id="alert" style="visibility: hidden;">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <div id="messaggio"></div>
+                    <button type="button" style="box-shadow: none;" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>" class="form-control shadow-lg border-1" id="Form">
+                <div class="form-group">
+                    <label for="Email" class="form-label label">Inserisci la tua email</label>
+                    <input type="email" class="form-control" name="Email" id="Email" value="<?php if($_SESSION['Email']) echo $_SESSION['Email'] ?>" 
+                        placeholder="email@example.com" maxlength="60" required>
+                </div>
+                <div class="form-group my-3">
+                    <label for="Password" class="form-label label">Inserisci la tua password</label>
+                    <input type="password" class="form-control" name="Password" id="Password" placeholder="Password"
+                        aria-describedby="passwordHelpBlock" minlength="8" maxlength="30" required
+                        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
+                </div>
+                <div class="btn-group my-3 col-12 column-gap-2" role="group">
+                    <input type="submit" class="btn btn-sm btn-success rounded-1 w-50" name="Submit" id="Submit" value="Invia">
+                    <input type="reset" class="btn btn-sm btn-danger rounded-1 w-50" id="Reset" value="Cancella"
+                        style="margin: 0;">
+                </div>
+                <div style="text-align: end;">
+                    <p style="margin-bottom: 0;">Oppure <a href="register.php">registrati</a></p>
+                </div>
+            </form>
+
+            <?php
+                if(isset($_POST['Submit'])){
+                    $_SESSION['Email'] = $_POST['Email'];
+                    $msg = Accedi();
+                    if($msg === true) header('Location: /TripPlanner/privato.php');
+                    else {
+                        $alert = "<script>document.getElementById('alert').style.visibility = 'visible';";
+                        $alert .= "document.getElementById('messaggio').innerHTML = \"".$msg."\";</script>";
+                        echo $alert;
+                    }
+                }
+            ?>
+        </div>
     </body>
 </html>
