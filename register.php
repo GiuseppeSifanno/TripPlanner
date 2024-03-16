@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="it">
         <head>
             <meta charset="UTF-8">
@@ -13,11 +13,12 @@
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
                 crossorigin="anonymous"></script>
             <?php 
+                ob_start();
                 session_start();
                 include "./Server/registrazione.php"; 
             ?>
 
-            <script type="text/javascript">
+            <script>
                 function setFoto(){
                     const xhttp = new XMLHttpRequest();
                     xhttp.onload =function() {
@@ -112,9 +113,10 @@
                     <?php 
                     if(isset($_POST['Submit'])){
                         $msg = Registra();
-                        echo "$msg";
-                        if($msg == "1") header("Location: /TripPlanner/privato.php");
-                        else {
+                        if($msg === true) {
+                            header('Location: /TripPlanner/areaPrivata/index.php?SID='.session_id()); 
+                            ob_end_flush();
+                        } else {
                             $alert = "<script>document.getElementById('alert').style.visibility = 'visible';";
                             $alert .= "document.getElementById('messaggio').innerHTML = \"".$msg."\";</script>";
                             echo $alert;

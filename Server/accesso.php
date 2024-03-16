@@ -12,6 +12,8 @@
 
         $sql = "SELECT Email, Password FROM ".$db_nome.".Utente WHERE Email = '$mail'";
 
+        $mail = $conn -> real_escape_string($mail);
+
         $result = $conn -> query($sql);
 
         //la mail non è presente nel db quindi è disponibile
@@ -21,6 +23,7 @@
             
             if($pswHash == $row['Password']){
                 $conn -> close();
+                $_SESSION['Consenti'] = true;
                 return true;
             } 
             else{

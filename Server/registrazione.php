@@ -16,6 +16,8 @@
 
         if($conn == false) return "Errore nella connessione. Codice: ".mysqli_connect_error();
 
+        $mail = $conn -> real_escape_string($mail);
+
         $sql = "SELECT Email FROM Utente WHERE Email = '$mail'";
         $result = $conn -> query($sql);
 
@@ -33,13 +35,14 @@
             //informazioni salvate correttamente nel db, lo comunichiamo al client e interrompiamo l'esecuzione
             if($conn -> query($sql)) {
                 $conn -> close();
-                //reindirizzamento alla pagina privata dell'utente (nome da rivedere)
-                return true;
+                $_SESSION['Consenti'] = true;
+                if(doPost($Hash)) return true;
+                else return "Non è stato possibile portare a termine l'operazione di registrazione. Riprova!";
             }
             //query non andata a buon fine, lo comunichiamo al client e interrompiamo l'esecuzione
             else {
                 $conn -> close();
-
+                
                 //messaggio visualizzato nell'alert
                 return "Non è stato possibile effettuare la registrazione, riprova\nErrore: ".mysqli_error($conn);
             }
@@ -49,4 +52,25 @@
             $conn -> close();
             return "Email già presente nel sistema. Prova ad effettuare il <a href='/TripPlanner/login.php' class='alert-link'>login</a>";
         }
+    }
+
+    function doPost($Hash){
+
+        $url = 'https://script.google.com/macros/s/AKfycbzeydAcngR0EbZJRocsJnlM3tSCCcfDjOF_D6eBIQ4g-P5YAmj9F0vl7i2Q98Ch07JsNw/exec';
+        
+        $ch = curl_init(); 
+        // Set cURL options 
+        curl_setopt($ch, CURLOPT_URL, $url); 
+        curl_setopt($ch, CURLOPT_POST, 1); 
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $Hash); 
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+        
+        // Execute cURL session 
+        if($response = curl_exec($ch)){
+            $response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            // Close cURL session 
+            curl_close($ch);
+            if($response == 200) return true;
+            else if($response == 500) return false;
+        } 
     }

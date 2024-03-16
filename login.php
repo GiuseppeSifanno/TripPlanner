@@ -16,7 +16,7 @@
             session_start();
             include "./Server/accesso.php";
         ?>
-        <script type="text/javascript">
+        <script>
             function setFoto(){
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload =function() {
@@ -66,7 +66,7 @@
                 if(isset($_POST['Submit'])){
                     $_SESSION['Email'] = $_POST['Email'];
                     $msg = Accedi();
-                    if($msg === true) header('Location: /TripPlanner/privato.php');
+                    if($msg === true) header('Location: /areaPrivata/index.php?SID='.session_id()); 
                     else {
                         $alert = "<script>document.getElementById('alert').style.visibility = 'visible';";
                         $alert .= "document.getElementById('messaggio').innerHTML = \"".$msg."\";</script>";
