@@ -24,15 +24,15 @@
         <body>
             <?php include "../navbar.html"?>
 
-            <div class="container my-3 shadow-lg p-0" style="width: 60%;">
+            <div class="container-lg my-3" style="width: auto;">
                 <form method="post" action="/Server/CreaViaggio.php" class="form-control" id="FormViaggi">
                     <div class="form-group">
                         <div class="container-fluid">
-                            <nav class="navbar navbar-expand" style="column-gap: 25px;">
+                            <nav class="navbar navbar-expand" style="column-gap: 10px;">
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                     <input type="search" class="form-control" placeholder="Digita il nome del luogo" aria-label="Search" id="search">
                                 </div>
-                                <div class="btn-group col-4 column-gap-2" role="group">
+                                <div class="btn-group col-6 column-gap-3" role="group">
                                     <input type="button" class="btn btn-sm btn-success rounded-1 w-50" name="AggiungiTappa" id="AggiungiTappa" value="Aggiungi Tappa" onclick="cercaTappa()" contenteditable="false">
                                     <input type="submit" class="btn btn-sm btn-danger rounded-1 w-50" id="CreaViaggio" value="Crea Viaggio" style="margin: 0;">    
                                 </div>
