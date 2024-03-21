@@ -19,61 +19,32 @@
                     header('Location: /TripPlanner/index.php');
                 };
             ?> -->  
-            
-            <script>
-                function setFoto(){
-                    const xhttp = new XMLHttpRequest();
-                    xhttp.onload =function() {
-                        let img = "url(/TripPlanner/Sfondi/".concat(xhttp.responseText);
-                        document.body.style.backgroundImage = "linear-gradient(to right, rgba(12, 12, 12, 0.782), rgba(53, 50, 50, 0.327)),".concat(img);
-                        document.body.id = "sfondo";
-                    }
-                    //si puo nascondere il percorso
-                    xhttp.open('POST', "/TripPlanner/Server/getImmagine.php");
-                    xhttp.send();
-                }
-                setFoto();
-            </script>
         </head>
 
         <body>
-            <?php include "./navbar.html"?>
+            <?php include "../navbar.html"?>
 
-            <div class="container-fluid">
-                <div class="container rounded-2 flex-lg-wrap" id="ctn-creaViaggio">
-                    <div id="alert" style="visibility: hidden;">
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <div id="messaggio"></div>
-                            <button type="button" style="box-shadow: none;" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <div class="container my-3 shadow-lg p-0" style="width: 60%;">
+                <form method="post" action="/Server/CreaViaggio.php" class="form-control" id="FormViaggi">
+                    <div class="form-group">
+                        <div class="container-fluid">
+                            <nav class="navbar navbar-expand" style="column-gap: 25px;">
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <input type="search" class="form-control" placeholder="Digita il nome del luogo" aria-label="Search" id="search">
+                                </div>
+                                <div class="btn-group col-4 column-gap-2" role="group">
+                                    <input type="button" class="btn btn-sm btn-success rounded-1 w-50" name="AggiungiTappa" id="AggiungiTappa" value="Aggiungi Tappa" onclick="cercaTappa()" contenteditable="false">
+                                    <input type="submit" class="btn btn-sm btn-danger rounded-1 w-50" id="CreaViaggio" value="Crea Viaggio" style="margin: 0;">    
+                                </div>
+                            </nav>
                         </div>
                     </div>
-                    <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" class="form-control shadow-lg border-1" id="Form">
-                        <fieldset>
-                            <div class="btn-group my-2 col-12 column-gap-2" role="group">
-                                <input type="submit" class="btn btn-sm btn-success rounded-1 w-50" name="Submit" id="Submit" value="Crea">
-                                <input type="reset" class="btn btn-sm btn-danger rounded-1 w-50" id="Reset" value="Cancella" style="margin: 0;">
-                            </div>
-                        </fieldset>
-
-                        <div class="form-group">
-                            <label for=""></label>
-                            <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
-                            <small id="helpId" class="text-muted">Help text</small>
-                        </div>
-
-                        <?php 
-                            if(isset($_POST['Submit'])){
-                                $msg = Registra();
-                                if($msg === true) {
-                                    header('Location: /areaPrivata/index.php?SID='.session_id());
-                                } else {
-                                    $alert = "<script>document.getElementById('alert').style.visibility = 'visible';";
-                                    $alert .= "document.getElementById('messaggio').innerHTML = \"".$msg."\";</script>";
-                                    echo $alert;
-                                }
-                            }
-                        ?>
-                    </form>
+                </form>
+                <!-- Contenitore che contiene tutti i viaggi selezionati -->
+                <div class="form-control" id="ctn-viaggi">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta, ullam perferendis dolorum 
+                    possimus neque praesentium nihil magni atque tempora animi? Consequatur numquam, aspernatur 
+                    cupiditate ab nam labore tenetur nobis nulla!
                 </div>
             </div>
             <script>
@@ -87,13 +58,29 @@
                             var xml = xhttp.responseText;
                             var parser = new DOMParser();
                             //console.log(studenti);
-                            VisualizzaStudenti(parser.parseFromString(xml, "text/html"));
+                            VisualizzaLuoghi(parser.parseFromString(xml, "text/html"));
                         }
 
                         xhttp.open('GET', "Server.php?parola="+testo.value);
                         xhttp.send();
                     }
                 };
+            </script>
+
+            <script>
+                var viaggi = document.getElementById("ctn-viaggi");
+
+                function cercaTappa(){
+                    //chiamata all'api
+                }
+
+                function aggiungiTappa(){
+                    //aggiunge la tappa nel contenitore 
+                }
+
+                function cancella(idTappa){
+                    viaggi.removeChild(document.getElementById(idTappa));
+                }
             </script>
         </body>
     </html>

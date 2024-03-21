@@ -23,7 +23,7 @@
             
             if($pswHash == $row['Password']){
                 $conn -> close();
-                $_SESSION['Consenti'] = true;
+                $_SESSION['SID'] = session_id();
                 return true;
             } 
             else{

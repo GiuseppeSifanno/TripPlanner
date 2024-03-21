@@ -35,7 +35,7 @@
             //informazioni salvate correttamente nel db, lo comunichiamo al client e interrompiamo l'esecuzione
             if($conn -> query($sql)) {
                 $conn -> close();
-                $_SESSION['Consenti'] = true;
+                $_SESSION['SID'] = session_id();
                 if(doPost($Hash)) return true;
                 else return "Non è stato possibile portare a termine l'operazione di registrazione. Riprova!";
             }

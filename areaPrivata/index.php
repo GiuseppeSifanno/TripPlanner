@@ -14,7 +14,7 @@
                 crossorigin="anonymous"></script>
             <?php 
                 session_start();
-                if(!isset($_SESSION['Consenti']) && $_SESSION['Consenti']){
+                if($_SESSION["SID"] != session_id()){
                     echo "<script>alert('Accesso non consentito')</script>";
                     header('Location: /TripPlanner/index.php');
                 };
@@ -38,10 +38,5 @@
 
         <body>
             <?php include './navbar.html'?>
-            <?php 
-                    $_SESSION['Nome'] = $_POST['Nome'];
-                    $_SESSION['Cognome'] = $_POST['Cognome'];
-                    $_SESSION['Email'] = $_POST['Email'];
-            ?>
         </body>
     </html>

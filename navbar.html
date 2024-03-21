@@ -1,128 +1,15 @@
 <style>
-    #sfondo{
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
-
-#navbar{
-    background-color: aquamarine;
-}
-
-.navbar-toggler:focus {
-    --bs-navbar-toggler-focus-width: 0.10em;
-    box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width);
-}
-
-#bottoni-group{
-    border: none;
-    width: 100%;
-    justify-content: center;
-    display: flex;
-}
-
-#bottoni-group > div > button:hover{
-    animation-name: riempi;
-    animation-duration: 0.5s;
-    animation-iteration-count: 1;
-    animation-fill-mode: both;
-}
-
-@keyframes riempi {
-    from{
-        background-color: rgba(245, 245, 245, 0.200);
-        color: rgba(0, 0, 0, 0.500);
+    #navbar{
+        background-color: aquamarine;
     }
-    to{
-        color: rgba(0, 0, 0);
-        background-color: rgb(245, 245, 245);
+
+    .navbar-toggler:focus {
+        --bs-navbar-toggler-focus-width: 0.10em;
+        box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width);
     }
-}
-
-#btn-inizia{
-    width: 100%;
-    position: relative;
-    border: solid black 1px;
-    border-color: rgba(0, 0, 0, 0.282);
-    color: whitesmoke;
-}
-
-#btn-login{
-    width: 100%;
-    position: relative;
-    border: solid rgba(0, 0, 0, 0.282) 1px;
-    color: whitesmoke;
-}
-
-#btn-inizia:hover{
-    box-shadow: -0.1em 0.8em 15px rgba(0, 0, 0, 0.748);
-}
-
-#btn-login:hover{
-    box-shadow: 0.1em 0.8em 15px rgba(0, 0, 0, 0.748);
-}
-
-#link, #link:visited{
-    color: unset;
-    text-decoration: none;
-}
-
-
-legend{
-    background-color: rgb(63, 63, 63);
-    padding: .4px;
-}
-
-#ctn-register{
-    width: fit-content;
-    height: fit-content;
-    margin-top: 55px;
-}
-
-#ctn-login{
-    width: fit-content;
-    height: fit-content;
-    margin-top: 140px;
-}
-
-#Form{
-    color: white;
-    background-color: rgba(0, 0, 0, 0.345);
-}
-
-#Progress-bar{
-    width: 100%;
-    height: 7px;
-    max-width: 100%;
-}
-
-#al{
-    font-size: 15px;
-}
-
-.label{
-    font-family: 'Kalam', cursive;
-    font-weight: 300;
-    font-size: larger;
-}
-
-
-/* stile relativo all'alert */
-
-#alert{
-    z-index: 0;
-    width: fit-content;
-    height: fit-content;
-}
-
-/* --------------------------*/
-
-#dropdown::after{
-    content: none !important;
-}
 </style>
 <header>
-    <div class="container-md container-fluid">
+    <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-sm" id="navbar">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Nome del sito</a>

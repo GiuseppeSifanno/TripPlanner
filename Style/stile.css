@@ -4,15 +4,6 @@
     background-size: cover;
 }
 
-#navbar{
-    background-color: aquamarine;
-}
-
-.navbar-toggler:focus {
-    --bs-navbar-toggler-focus-width: 0.10em;
-    box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width);
-}
-
 #bottoni-group{
     border: none;
     width: 100%;
@@ -118,4 +109,18 @@ legend{
 
 #dropdown::after{
     content: none !important;
+}
+
+#FormViaggi{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.345);
+    border-bottom-left-radius: 0px; 
+    border-bottom-right-radius: 0px;
+    border-bottom: 0px;
+}
+
+#ctn-viaggi{
+    border-top-left-radius: 0; 
+    border-top-right-radius: 0; 
+    border-top: 0px;
 }
