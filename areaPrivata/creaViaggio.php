@@ -24,62 +24,93 @@
         <body>
             <?php include "../navbar.html"?>
 
-            <div class="container-lg my-3" style="width: auto;">
+            <div class="container-lg my-3" id="ctn-viaggi">
                 <form method="post" action="/Server/CreaViaggio.php" class="form-control" id="FormViaggi">
                     <div class="form-group">
-                        <div class="container-fluid">
+                        <div class="container-sm">
                             <nav class="navbar navbar-expand" style="column-gap: 10px;">
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                     <input type="search" class="form-control" placeholder="Digita il nome del luogo" aria-label="Search" id="search">
                                 </div>
                                 <div class="btn-group col-6 column-gap-3" role="group">
-                                    <input type="button" class="btn btn-sm btn-success rounded-1 w-50" name="AggiungiTappa" id="AggiungiTappa" value="Aggiungi Tappa" onclick="cercaTappa()" contenteditable="false">
-                                    <input type="submit" class="btn btn-sm btn-danger rounded-1 w-50" id="CreaViaggio" value="Crea Viaggio" style="margin: 0;">    
+                                    <input type="button" class="btn btn-sm btn-success rounded-1 w-50" name="AggiungiTappa" id="AggiungiTappa" value="Aggiungi" onclick="cercaTappa()" contenteditable="false">
+                                    <input type="submit" class="btn btn-sm btn-danger rounded-1 w-50" id="CreaViaggio" value="Crea" style="margin: 0;" id="btn-crea">    
                                 </div>
                             </nav>
                         </div>
                     </div>
                 </form>
                 <!-- Contenitore che contiene tutti i viaggi selezionati -->
-                <div class="form-control" id="ctn-viaggi">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta, ullam perferendis dolorum 
-                    possimus neque praesentium nihil magni atque tempora animi? Consequatur numquam, aspernatur 
-                    cupiditate ab nam labore tenetur nobis nulla!
+                <div class="form-control" id="ctn-tappe">
+                    <div class="row row-cols-1 row-cols-md-2 g-4" id="cardGroup">
+                        <div class='col' id='1'>
+                            <div class='card text-left' id='card'>
+                                <div class='card-body'> 
+                                    <h4 class='card-title'>Title</h4>
+                                    <p class='card-text'>Body</p>
+                                    
+                                </div>
+                                <div class='p-3' id='comandi'>
+                                    <button type='button' class='btn btn-outline p-2' id='btn-delete' onclick='cancella(1)'>
+                                        <img src='../Icone/trash.svg' alt='Elimina' role='button'>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col' id='i'>
+                            <div class='card text-left' id='card'>
+                                <div class='card-body'> 
+                                    <h4 class='card-title'>Title</h4>
+                                    <p class='card-text'>ciao</p>
+                                </div>
+                                <div class='p-3' id='comandi'>
+                                    <button type='button' class='btn btn-outline p-2' id='btn-delete' onclick='cancella(i)'>
+                                        <img src='../Icone/trash.svg' alt='Elimina' role='button'>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <script>
-                const testo = document.getElementById("search");
-                testo.oninput = function () {
-                    //console.log(testo.value);
-                    if(isNaN(testo.value) && testo.value !== ""){
-                        //console.log(testo.value);
-                        const xhttp = new XMLHttpRequest();
-                        xhttp.onload = function() {
-                            var xml = xhttp.responseText;
-                            var parser = new DOMParser();
-                            //console.log(studenti);
-                            VisualizzaLuoghi(parser.parseFromString(xml, "text/html"));
-                        }
-
-                        xhttp.open('GET', "Server.php?parola="+testo.value);
-                        xhttp.send();
-                    }
-                };
-            </script>
-
-            <script>
-                var viaggi = document.getElementById("ctn-viaggi");
+                var viaggi = document.getElementById("cardGroup");
 
                 function cercaTappa(){
                     //chiamata all'api
+                    var testo = document.getElementById("search");
+                    if(testo.value !== ""){
+                        const xhttp = new XMLHttpRequest();
+                        xhttp.readyState = function() {
+                            if(this.readyState == 4 && this.status == 200){
+                                var json = JSON.parse(xhttp.responseText);
+                                aggiungiTappa(json);
+                            }
+                        }
+                        //inserire il puntamento all'api appscript
+                        xhttp.open('GET', "?tappa="+testo.value);
+                        xhttp.send();
+                    }
                 }
 
-                function aggiungiTappa(){
+                function aggiungiTappa(json){
+                    var id = viaggi.childElementCount++;
+                    var display_name = json[0].display_name;
+                    var lat = json[0].lat;
+                    var lon = json[0].lon; 
+
+                    var cardTappa = document.createElement("div");
+                    cardTappa.classList.add("card text-left");
+                    cardTappa.innerHTML = "<div class='col' id='"+id+"'><div class='card text-left' id='card'><div class='card-body'><h4 class='card-title'>Title</h4><p class='card-text'>Body</p><input type='hidden' name='lat' value='"+lat+"'><input type='hidden' name='lon' value='"+lon+"'></div><div class='p-3' id='comandi'><button type='button' class='btn btn-outline p-2' id='btn-delete' onclick='cancella(i)'><img src='../Icone/trash.svg' alt='Elimina' role='button'></button></div></div></div>";
+
                     //aggiunge la tappa nel contenitore 
+                    viaggi.appendChild(cardTappa);
                 }
 
                 function cancella(idTappa){
-                    viaggi.removeChild(document.getElementById(idTappa));
+                    viaggi.removeChild(document.getElementById("id"));
+                    if(viaggi.hasChildNodes())document.getElementById("btn-crea").classList.add("active");
+                    else document.getElementById("btn-crea").classList.add("disabled");
                 }
             </script>
         </body>

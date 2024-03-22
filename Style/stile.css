@@ -117,11 +117,32 @@ legend{
     border-bottom-left-radius: 0px; 
     border-bottom-right-radius: 0px;
     border-bottom: 0px;
+    border: 0px;
 }
 
-#ctn-viaggi{
+#ctn-tappe{
+    border: 0px;
     border-top-left-radius: 0px; 
     border-top-right-radius: 0px; 
     border-top: 0px;
-    
+    padding: 12px;
+}
+
+#ctn-viaggi{
+    border-radius: 0.375rem;
+    padding: 0;
+    box-shadow: 0px 0.55pc 1em 3px;
+}
+
+#card{
+    flex-direction: row;
+    align-items: center;
+}
+
+#btn-delete:hover{
+    background-color: rgba(255, 0, 0, 0.773);
+}
+
+#cardGroup{
+    justify-content: center;
 }
