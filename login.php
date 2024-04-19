@@ -14,6 +14,7 @@
             crossorigin="anonymous"></script>
         <?php 
             session_start();
+            if(isset($_SESSION)) header('Location: /areaPrivata/index.php?SID='.session_id()); 
             include "./Server/accesso.php";
         ?>
         <script>

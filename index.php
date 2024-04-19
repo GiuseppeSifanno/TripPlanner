@@ -27,10 +27,10 @@
         </script>
     </head>
     <body>
+        <?php include "./navbar.html"?>
+        
         <div class="container">
-            <?php include "./navbar.html"?>
-
-            <span class="container-md container-fluid my-5" style="position: absolute; display: flow ; width: 55%; 
+            <span class="container-md container-fluid my-5 text-start" style="position: absolute; display: flow ; width: 55%; 
                         height: fit-content; color: whitesmoke; text-wrap:pretty;" id="introduzione">
                 <h1>Pianifica al miglior modo tutte le tue tappe del tuo viaggio</h1>
                 <h3 class="my-4">

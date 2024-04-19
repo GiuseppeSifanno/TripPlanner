@@ -15,6 +15,7 @@
             <?php 
                 ob_start();
                 session_start();
+                if(isset($_SESSION)) header('Location: /areaPrivata/index.php?SID='.session_id());
                 include "./Server/registrazione.php"; 
             ?>
 

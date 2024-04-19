@@ -1,43 +1,44 @@
-<header>
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-sm" id="navbar">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Nome del sito</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarText">
-                    <ul class="navbar-nav mb-2 mb-lg-0 column-gap-5">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="VisualizzaViaggi.php">Visualizza i tuoi viaggi</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="CreaViaggio.php">Crea il tuo viaggio</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link img-thumbnail position-relative dropdown-toggle" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false" href="#">
-                                <img src="/TripPlanner/Icone/bell.svg" class="text-decoration-none">
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="margin: 10px;">
-                                    <!-- n.messaggi ottenuto dal server--> 99+
-                                    <span class="visually-hidden">unread messages</span>
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end"></ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link img-thumbnail dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">
-                                <img src="/TripPlanner/Icone/account_circle_FILL0_wght400_GRAD0_opsz24.svg" class="text-decoration-none">
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><button class="dropdown-item" type="button">Profilo</button></li>
-                                <li><div class="dropdown-divider"></div></li>
-                                <li><a class="dropdown-item" type="button" href="../Server/logout.php">Esci</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+<style>
+    #navbar{
+        background-color: aquamarine;
+    }
+
+    .navbar-toggler:focus {
+        --bs-navbar-toggler-focus-width: 0px;
+        box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width);
+    }
+    .link:hover {
+        transform: translateY(-3px);
+    }
+</style>
+<div class="container-fluid p-0">
+    <nav class="navbar navbar-expand-sm" id="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.php">Nome del sito</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarText">
+                <ul class="navbar-nav mb-2 mb-lg-0 column-gap-5">
+                    <li class="nav-item link">
+                        <a class="nav-link active" aria-current="page" href="VisualizzaViaggi.php" target="_self">VISUALIZZA I TUOI VIAGGI</a>
+                    </li>
+                    <li class="nav-item link">
+                        <a class="nav-link active" aria-current="page" href="CreaViaggio.php" target="_self">CREA IL TUO VIAGGIO</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link img-thumbnail dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#">
+                            <img src="/TripPlanner/Icone/account_circle_FILL0_wght400_GRAD0_opsz24.svg" class="text-decoration-none">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><button class="dropdown-item" type="button">Profilo</button></li>
+                            <li><div class="dropdown-divider"></div></li>
+                            <li><a class="dropdown-item" type="button" href="../Server/logout.php">Esci</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </div>
-</header>
+        </div>
+    </nav>
+</div>

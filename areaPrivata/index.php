@@ -14,6 +14,7 @@
                 crossorigin="anonymous"></script>
             <?php 
                 session_start();
+                
                 if($_SESSION["SID"] != session_id()){
                     echo "<script>alert('Accesso non consentito')</script>";
                     header('Location: /TripPlanner/index.php');
@@ -38,5 +39,14 @@
 
         <body>
             <?php include './navbar.html'?>
+            <div class="container">
+                <span class="container-md container-fluid my-5" style="position: absolute; display: flow ; width: 55%; 
+                            height: fit-content; color: whitesmoke; text-wrap:pretty;" id="introduzione">
+                    <h5 class="my-4">
+                        Benvenuto nella tua zona privata, tramite questa pagina potrai <a href="visualizzaViaggi.php?SID=<?php session_id()?>">visulizzare i tuoi viaggi</a>
+                        oppure potrai direttamente <a href="creaViaggio.php?SID=<?php session_id()?>">crearne uno tu</a>
+                    </h5>
+                </span>
+            </div>
         </body>
     </html>

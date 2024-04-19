@@ -14,7 +14,7 @@
                 crossorigin="anonymous"></script>
             <!-- <?php 
                 session_start();
-                if(!isset($_SESSION['Consenti']) && $_SESSION['Consenti']){
+                if(isset($_SESSION) && session_id() == $_REQUEST['SID']){
                     echo "<script>alert('Accesso non consentito')</script>";
                     header('Location: /TripPlanner/index.php');
                 };
@@ -22,60 +22,62 @@
         </head>
 
         <body>
-            <?php include "../navbar.html"?>
+            <?php include_once "navbar.html"?>
+            <div style="display: flex; justify-content: center; margin: 40px; margin-top: 20px;">
+                <div class="container-lg my-3" id="ctn-viaggi">
+                    <form method="post" action="/TripPlanner/Server/CreaViaggio.php" id="FormViaggi">
+                        <div class="form-group">
+                            <div class="container-sm">
+                                <nav class="navbar navbar-expand" style="column-gap: 10px;" id="bar">
+                                    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="max-width: 50%;">
+                                        <input type="search" class="form-control" placeholder="Digita il nome del luogo" aria-label="Search" id="search">
+                                    </div>
+                                    <div class="btn-group col-3 column-gap-3" role="group" id="button">
+                                        <input type="button" class="btn btn-sm rounded-1 w-50" name="AggiungiTappa" id="AggiungiTappa" value="AGGIUNGI" onclick="cercaTappa()" contenteditable="false">
+                                        <input type="submit" class="btn btn-sm rounded-1 w-50" id="CreaViaggio" value="CREA" style="margin: 0;" id="btn-crea">    
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                    
+                    <!-- Contenitore che contiene tutti i viaggi selezionati -->
+                        <div class="form-control" id="ctn-tappe">
+                            <div class="row row-cols-1 row-cols-md-2 g-4" id="cardGroup">
+                                <div class='col' id='1'>
+                                    <div class='card text-left' id='card'>
+                                        <div class='card-body'> 
+                                            <h4 class='card-title'>Title</h4>
+                                            <p class='card-text'>Body</p>
 
-            <div class="container-lg my-3" id="ctn-viaggi">
-                <form method="post" action="/Server/CreaViaggio.php" class="form-control" id="FormViaggi">
-                    <div class="form-group">
-                        <div class="container-sm">
-                            <nav class="navbar navbar-expand" style="column-gap: 10px;">
-                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                    <input type="search" class="form-control" placeholder="Digita il nome del luogo" aria-label="Search" id="search">
+                                        </div>
+                                        <div class='p-3' id='comandi'>
+                                            <button type='button' class='btn btn-outline p-2' id='btn-delete' onclick='cancella(1)'>
+                                                <img src='../Icone/trash.svg' alt='Elimina' role='button'>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="btn-group col-6 column-gap-3" role="group">
-                                    <input type="button" class="btn btn-sm btn-success rounded-1 w-50" name="AggiungiTappa" id="AggiungiTappa" value="Aggiungi" onclick="cercaTappa()" contenteditable="false">
-                                    <input type="submit" class="btn btn-sm btn-danger rounded-1 w-50" id="CreaViaggio" value="Crea" style="margin: 0;" id="btn-crea">    
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
-                </form>
-                <!-- Contenitore che contiene tutti i viaggi selezionati -->
-                <div class="form-control" id="ctn-tappe">
-                    <div class="row row-cols-1 row-cols-md-2 g-4" id="cardGroup">
-                        <div class='col' id='1'>
-                            <div class='card text-left' id='card'>
-                                <div class='card-body'> 
-                                    <h4 class='card-title'>Title</h4>
-                                    <p class='card-text'>Body</p>
-                                    
-                                </div>
-                                <div class='p-3' id='comandi'>
-                                    <button type='button' class='btn btn-outline p-2' id='btn-delete' onclick='cancella(1)'>
-                                        <img src='../Icone/trash.svg' alt='Elimina' role='button'>
-                                    </button>
+                                <div class='col' id='i'>
+                                    <div class='card text-left' id='card'>
+                                        <div class='card-body'> 
+                                            <h4 class='card-title'>Title</h4>
+                                            <p class='card-text'>ciao</p>
+                                        </div>
+                                        <div class='p-3' id='comandi'>
+                                            <button type='button' class='btn btn-outline p-2' id='btn-delete' onclick='cancella(i)'>
+                                                <img src='../Icone/trash.svg' alt='Elimina' role='button'>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class='col' id='i'>
-                            <div class='card text-left' id='card'>
-                                <div class='card-body'> 
-                                    <h4 class='card-title'>Title</h4>
-                                    <p class='card-text'>ciao</p>
-                                </div>
-                                <div class='p-3' id='comandi'>
-                                    <button type='button' class='btn btn-outline p-2' id='btn-delete' onclick='cancella(i)'>
-                                        <img src='../Icone/trash.svg' alt='Elimina' role='button'>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
+
             <script>
                 var viaggi = document.getElementById("cardGroup");
-
                 function cercaTappa(){
                     //chiamata all'api
                     var testo = document.getElementById("search");
@@ -101,14 +103,16 @@
 
                     var cardTappa = document.createElement("div");
                     cardTappa.classList.add("card text-left");
-                    cardTappa.innerHTML = "<div class='col' id='"+id+"'><div class='card text-left' id='card'><div class='card-body'><h4 class='card-title'>Title</h4><p class='card-text'>Body</p><input type='hidden' name='lat' value='"+lat+"'><input type='hidden' name='lon' value='"+lon+"'></div><div class='p-3' id='comandi'><button type='button' class='btn btn-outline p-2' id='btn-delete' onclick='cancella(i)'><img src='../Icone/trash.svg' alt='Elimina' role='button'></button></div></div></div>";
+                    cardTappa.innerHTML = "<div class='col' id='"+id+"'><div class='card text-left' id='card'><div class='card-body'><h4 class='card-title' name='display_name'>"+display_name+"</h4><input type='hidden' name='lat' value='"+lat+"'><input type='hidden' name='lon' value='"+lon+"'></div><div class='p-3' id='comandi'><button type='button' class='btn btn-outline p-2' id='btn-delete' onclick='cancella(i)'><img src='../Icone/trash.svg' alt='Elimina' role='button'></button></div></div></div>";
 
                     //aggiunge la tappa nel contenitore 
                     viaggi.appendChild(cardTappa);
                 }
 
                 function cancella(idTappa){
-                    viaggi.removeChild(document.getElementById("id"));
+                    if(confirm("Sicuro di voler eliminare questa tappa?")) viaggi.removeChild(document.getElementById(idTappa));
+                    else return;
+
                     if(viaggi.hasChildNodes())document.getElementById("btn-crea").classList.add("active");
                     else document.getElementById("btn-crea").classList.add("disabled");
                 }
