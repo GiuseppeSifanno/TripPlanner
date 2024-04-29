@@ -15,7 +15,6 @@
             <?php 
                 ob_start();
                 session_start();
-                if(isset($_SESSION)) header('Location: /areaPrivata/index.php?SID='.session_id());
                 include "./Server/registrazione.php"; 
             ?>
 
@@ -115,7 +114,7 @@
                     if(isset($_POST['Submit'])){
                         $msg = Registra();
                         if($msg === true) {
-                            header('Location: /TripPlanner/areaPrivata/index.php?SID='.session_id()); 
+                            header('Location: /TripPlanner/areaPrivata/index.php'); 
                             ob_end_flush();
                         } else {
                             $alert = "<script>document.getElementById('alert').style.visibility = 'visible';";

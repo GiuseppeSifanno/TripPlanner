@@ -12,13 +12,13 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
                 crossorigin="anonymous"></script>
-            <!-- <?php 
+            <?php 
                 session_start();
-                if(isset($_SESSION) && session_id() == $_REQUEST['SID']){
+                if($_SESSION['consenti'] == false){
                     echo "<script>alert('Accesso non consentito')</script>";
-                    header('Location: /TripPlanner/index.php');
+                    header('refresh:5; url=/TripPlanner/index.php');
                 };
-            ?> -->  
+            ?>
         </head>
 
         <body>
@@ -28,19 +28,20 @@
                     <form method="post" action="/TripPlanner/Server/CreaViaggio.php" id="FormViaggi">
                         <div class="form-group">
                             <div class="container-sm">
-                                <nav class="navbar navbar-expand" style="column-gap: 10px;" id="bar">
-                                    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="max-width: 50%;">
-                                        <input type="search" class="form-control" placeholder="Digita il nome del luogo" aria-label="Search" id="search">
+                                <nav class="navbar navbar-expand" id="bar">
+                                    <div class="collapse navbar-collapse column-gap-3 row-gap-2" id="navbarSupportedContent" style="width: -webkit-fill-available; flex-wrap: wrap; justify-content: center;">
+                                        <input type="search" class="form-control" style="width: auto;" placeholder="Digita il nome del luogo" aria-label="Search" id="search">
+                                        <input type="text" class="form-control" style="width: auto;" placeholder="Nome del viaggio" id="nomeViaggio" name="nomeViaggio">
                                     </div>
-                                    <div class="btn-group col-3 column-gap-3" role="group" id="button">
-                                        <input type="button" class="btn btn-sm rounded-1 w-50" name="AggiungiTappa" id="AggiungiTappa" value="AGGIUNGI" onclick="cercaTappa()" contenteditable="false">
-                                        <input type="submit" class="btn btn-sm rounded-1 w-50" id="CreaViaggio" value="CREA" style="margin: 0;" id="btn-crea">    
+                                    <div class="btn-group column-gap-3 container row-gap-2" role="group" id="button">
+                                        <input type="button" class="btn btn-sm rounded-1" name="AggiungiTappa" id="AggiungiTappa" value="AGGIUNGI" style="width: auto;" onclick="cercaTappa()" contenteditable="false">
+                                        <input type="submit" class="btn btn-sm rounded-1" id="CreaViaggio" value="CREA" style="width: auto;" id="btn-crea">    
                                     </div>
                                 </nav>
                             </div>
                         </div>
                     
-                    <!-- Contenitore che contiene tutti i viaggi selezionati -->
+                        <!-- Contenitore che contiene tutti i viaggi selezionati -->
                         <div class="form-control" id="ctn-tappe">
                             <div class="row row-cols-1 row-cols-md-2 g-4" id="cardGroup">
                                 <div class='col' id='1'>
@@ -96,6 +97,7 @@
                 }
 
                 function aggiungiTappa(json){
+                    json = JSON.parse(JSON.stringify(json));
                     var id = viaggi.childElementCount++;
                     var display_name = json[0].display_name;
                     var lat = json[0].lat;
@@ -103,7 +105,7 @@
 
                     var cardTappa = document.createElement("div");
                     cardTappa.classList.add("card text-left");
-                    cardTappa.innerHTML = "<div class='col' id='"+id+"'><div class='card text-left' id='card'><div class='card-body'><h4 class='card-title' name='display_name'>"+display_name+"</h4><input type='hidden' name='lat' value='"+lat+"'><input type='hidden' name='lon' value='"+lon+"'></div><div class='p-3' id='comandi'><button type='button' class='btn btn-outline p-2' id='btn-delete' onclick='cancella(i)'><img src='../Icone/trash.svg' alt='Elimina' role='button'></button></div></div></div>";
+                    cardTappa.innerHTML = "<div class='col' id='"+id+"'><div class='card text-left' id='card'><div class='card-body'><h4 class='card-title' name='display_name[]'>"+display_name+"</h4><input type='hidden' name='lat[]' value='"+lat+"'><input type='hidden' name='lon[]' value='"+lon+"'></div><div class='p-3' id='comandi'><button type='button' class='btn btn-outline p-2' id='btn-delete' onclick='cancella(i)'><img src='../Icone/trash.svg' alt='Elimina' role='button'></button></div></div></div>";
 
                     //aggiunge la tappa nel contenitore 
                     viaggi.appendChild(cardTappa);
@@ -113,7 +115,7 @@
                     if(confirm("Sicuro di voler eliminare questa tappa?")) viaggi.removeChild(document.getElementById(idTappa));
                     else return;
 
-                    if(viaggi.hasChildNodes())document.getElementById("btn-crea").classList.add("active");
+                    if(viaggi.hasChildNodes())document.getElementById("CreaViaggio").classList.add("active");
                     else document.getElementById("btn-crea").classList.add("disabled");
                 }
             </script>

@@ -10,9 +10,9 @@
 
         if($conn == false) return "Errore nella connessione. Codice: ".mysqli_connect_error();
 
-        $sql = "SELECT Email, Password FROM ".$db_nome.".Utente WHERE Email = '$mail'";
-
         $mail = $conn -> real_escape_string($mail);
+
+		$sql = "SELECT Email, Password FROM ".$db_nome.".Utente WHERE Email = '$mail'";
 
         $result = $conn -> query($sql);
 
@@ -23,10 +23,11 @@
             
             if($pswHash == $row['Password']){
                 $conn -> close();
-                $_SESSION['SID'] = session_id();
+                $_SESSION['consenti'] = true;
                 return true;
             } 
             else{
+                $_SESSION['consenti'] = false;
                 $conn -> close();
                 return "Password non corretta, riprova";
             } 

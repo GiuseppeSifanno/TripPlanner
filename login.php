@@ -14,7 +14,6 @@
             crossorigin="anonymous"></script>
         <?php 
             session_start();
-            if(isset($_SESSION)) header('Location: /areaPrivata/index.php?SID='.session_id()); 
             include "./Server/accesso.php";
         ?>
         <script>
@@ -67,7 +66,7 @@
                 if(isset($_POST['Submit'])){
                     $_SESSION['Email'] = $_POST['Email'];
                     $msg = Accedi();
-                    if($msg === true) header('Location: /areaPrivata/index.php?SID='.session_id()); 
+                    if($msg === true) header('Location: /TripPlanner/areaPrivata/index.php'); 
                     else {
                         $alert = "<script>document.getElementById('alert').style.visibility = 'visible';";
                         $alert .= "document.getElementById('messaggio').innerHTML = \"".$msg."\";</script>";

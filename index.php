@@ -16,7 +16,7 @@
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload =function() {
                     let img = "url(/TripPlanner/Sfondi/".concat(xhttp.responseText);
-                    document.body.style.backgroundImage = "linear-gradient(to right, rgba(12, 12, 12, 0.782), rgba(53, 50, 50, 0.327)),".concat(img);
+                    document.body.style.backgroundImage = "linear-gradient(to right, rgba(12, 12, 12, 23%), rgba(53, 50, 50, 0.325)),".concat(img);
                     document.body.id = "sfondo";
                 }
                 //si puo nascondere il percorso
@@ -40,12 +40,12 @@
                 <div class="btn-group column-gap-3" id="bottoni-group" role="group">
                     <div id="btn-inizia-ctn" class="my-2 my-1">
                         <button class="btn p-2" id="btn-inizia" style="overflow-wrap: break-word;">
-                            <a href="register.php" id="link">CREA IL TUO PRIMO VIAGGIO</a> 
+                            <a href="/TripPlanner/register.php" id="link">CREA IL TUO PRIMO VIAGGIO</a> 
                         </button>
                     </div>
                     <div id="btn-inizia-ctn" class="my-2">
                         <button class="btn p-2" id="btn-login">
-                            <a href="login.php" id="link">ACCEDI</a>
+                            <a href="/TripPlanner/login.php" id="link">ACCEDI</a>
                         </button>
                     </div>
                 </div>

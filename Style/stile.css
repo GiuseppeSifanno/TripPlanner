@@ -154,6 +154,7 @@ legend{
 #bar{
     display: flex;
     justify-content: center;
+    row-gap: 10px;
 }
 
 #AggiungiTappa{
@@ -162,4 +163,10 @@ legend{
 
 #CreaViaggio{
     background-color: rgba(123, 255, 40, 0.921);
+}
+
+#button{
+    flex-wrap: wrap;
+    width: -webkit-fill-available;
+
 }

@@ -35,12 +35,15 @@
             //informazioni salvate correttamente nel db, lo comunichiamo al client e interrompiamo l'esecuzione
             if($conn -> query($sql)) {
                 $conn -> close();
-                $_SESSION['SID'] = session_id();
-                if(doPost($Hash)) return true;
+                if(doPost($Hash)){
+                    $_SESSION['consenti'] = true;
+                    return true;
+                }
                 else return "Non è stato possibile portare a termine l'operazione di registrazione. Riprova!";
             }
             //query non andata a buon fine, lo comunichiamo al client e interrompiamo l'esecuzione
             else {
+                $_SESSION['consenti'] = false;
                 $conn -> close();
                 
                 //messaggio visualizzato nell'alert
@@ -48,6 +51,7 @@
             }
         }
         else if($result -> num_rows == 1) {
+            $_SESSION['consenti'] = false;
             //c'è già un'altra mail uguale presente nel db
             $conn -> close();
             return "Email già presente nel sistema. Prova ad effettuare il <a href='/TripPlanner/login.php' class='alert-link'>login</a>";
