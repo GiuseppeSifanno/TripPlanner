@@ -33,14 +33,14 @@
     </head>
 
     <body>
-        <div class="container rounded-2 flex-lg-wrap" id="ctn-login">
-            <div id="alert" style="visibility: hidden;">
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="container rounded-2 flex-lg-wrap" id="ctn-login" style="width: 600px;">
+            <div id="alert" style="visibility: hidden; width: 100%;">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: inherit;">
                     <div id="messaggio"></div>
                     <button type="button" style="box-shadow: none;" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
-            <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>" class="form-control shadow-lg border-1" id="Form">
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>" class="form-control shadow-lg border-1" id="Form" style="min-width: 500px;">
                 <div class="form-group">
                     <label for="Email" class="form-label label">Inserisci la tua email</label>
                     <input type="email" class="form-control" name="Email" id="Email" value="<?php if($_SESSION['Email']) echo $_SESSION['Email'] ?>" 

@@ -43,8 +43,8 @@
                 }
             ?>
             <div class="container rounded-2 flex-lg-wrap" id="ctn-register">
-                <div id="alert" style="visibility: hidden;">
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <div id="alert" style="visibility: hidden; width: 100%;">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: inherit;">
                         <div id="messaggio"></div>
                         <button type="button" style="box-shadow: none;" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>

@@ -22,7 +22,7 @@
         </head>
         <body>
             <?php include_once 'navbar.html' ?>
-            <div class="container text-center" style="text-align: justify;">
-                <h3>Non sono presenti viaggi, per iniziare perchè non<a href="/TripPlanner/areaPrivata/creaViaggio.php">creane uno</a>?</h3>
+            <div class="container text-center" style="display: flex; align-items: center; height: 70vh;">
+                <h3>Non sono presenti viaggi, per iniziare perchè non provi a <a href="/TripPlanner/areaPrivata/creaViaggio.php">crearne</a> uno?</h3>
             </div>
         </body>
