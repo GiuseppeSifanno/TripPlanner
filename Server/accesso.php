@@ -29,7 +29,7 @@
             else{
                 $_SESSION['consenti'] = false;
                 $conn -> close();
-                return "Password non corretta, riprova";
+                return "Credenziali non corrette, riprova";
             } 
         }
         else return "L'email non esiste. Controlla che sia corretta oppure <a href='/TripPlanner/register.php' class='alert-link'>registrati</a>";
