@@ -20,7 +20,7 @@
 
     function doPost($params){
         
-        $url = 'https://script.google.com/macros/s/AKfycbx8xDBsOeoCTWt09tnOZA1yOuhtQjuDOhHQcMW_hJtgdrLggaVfZ2uFwCIFeROGaAlSmQ/exec';
+        $url = 'https://script.google.com/macros/s/AKfycbzeydAcngR0EbZJRocsJnlM3tSCCcfDjOF_D6eBIQ4g-P5YAmj9F0vl7i2Q98Ch07JsNw/exec';
         
         $ch = curl_init(); 
 
@@ -59,5 +59,3 @@
         
         return $hash;
     }
-
-    
