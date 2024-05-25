@@ -67,35 +67,40 @@
                     return $json;*/
 
                     session_start();
-                    include_once "/TripPlanner/Server/credenziali.php";
+                    include_once "../Server/credenziali.php";
                     $conn = new mysqli($host, $username, $password, $db_nome);
+
                     if($conn == false) return "Errore nella connessione. Codice: ".mysqli_connect_error();
                     $mail = $conn -> real_escape_string($_SESSION['Email']);
-                    $sql = "SELECT Hash FROM Utente WHERE Email = '$mail';";
-                    if($hash = $conn -> query($sql)) {
+
+                    $sql = "SELECT Hash FROM $db_nome.Utente WHERE Email = '$mail';";
+                    if($result = $conn -> query($sql)) {
+                        $row = $result ->fetch_assoc();
+                        $hash = $row['Hash'];
                         //se ci sono dei valori ritornati allora ritorniamo la lista dei viaggi decodificata da JSON a PHP
-                        if( ($viaggi = json_decode(doGet($hash), true, 512, JSON_HEX_APOS)) != null) return $viaggi;
-                        else return false; 
+                        if($json = doPost($hash)){
+                            //echo json_decode($json, true, 512, JSON_HEX_APOS | JSON_THROW_ON_ERROR);
+                            if( ($viaggi = json_decode($json, true, 512, JSON_HEX_APOS | JSON_THROW_ON_ERROR)) != null) return $viaggi;
+                            else return false;
+                        }
                     }
                     else return false;
-
                 }
 
                 //verifichiamo l'esistenza di viaggi creati precedentamente dall'utente
                 //nel caso in cui esistono ci vengono restituiti così da poter creare la pagina
-                function doGet($hash){
-                    $url = 'https://script.google.com/macros/s/AKfycbxSDR0fALRBwIlL01E2VO2LgbLBRjbMoW3SjeIwFQOS-PP2ujMWFrhBin5PmTdHvt_Yrw/exec?hash='.$hash;
-
+                function doPost($hash){
+                    $url = 'https://script.google.com/macros/s/AKfycbz4xghBLIuiCyjtFrX7nbqTlSU6ItU4a_2aiPPdEmSiqgPn8KYKqz5SGs_m1loG8vhN/exec';
+                    
                     $ch = curl_init(); 
                     // Set cURL options 
                     curl_setopt($ch, CURLOPT_URL, $url); 
-                    curl_setopt($ch, CURLOPT_HTTPGET, 1);
+                    curl_setopt($ch, CURLOPT_POST, 1);
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $hash);
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
 
-                    $response = curl_exec($ch);
-                    // Execute cURL session 
-                    if(($code = curl_getinfo($ch, CURLINFO_HTTP_CODE)) == 200){
-                        // Close cURL session 
+                    if($response = curl_exec($ch)) {
                         curl_close($ch);
                         return $response;
                     }
@@ -131,7 +136,6 @@
                         $card .= "</div>";
                         $card .= "<div class='offcanvas offcanvas-top' data-bs-backdrop='static' tabindex='-1' id='n$i' aria-labelledby='offcanvasTopLabel'>
                         <div class='offcanvas-header'>
-                            <h5 class='offcanvas-title' id='offcanvasTopLabel'>Offcanvas top</h5>
                             <button type='button' class='btn-close' id='btnMapClose' onclick=closeMap('n$i') data-bs-dismiss='offcanvas' aria-label='Close'></button>
                         </div>
                         <div class='offcanvas-body'>
