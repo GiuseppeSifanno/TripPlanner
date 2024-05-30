@@ -90,7 +90,7 @@
                 //verifichiamo l'esistenza di viaggi creati precedentamente dall'utente
                 //nel caso in cui esistono ci vengono restituiti così da poter creare la pagina
                 function doPost($hash){
-                    $url = 'https://script.google.com/macros/s/AKfycbz4xghBLIuiCyjtFrX7nbqTlSU6ItU4a_2aiPPdEmSiqgPn8KYKqz5SGs_m1loG8vhN/exec';
+                    $url = 'https://script.google.com/macros/s/AKfycbwGsMJWZ84VsAd0Bxf2Ji6-xc7ODkTHRLzHkYR7gjjKLcWVN0m2YE3036NHu0aO8M2YWg/exec';
                     
                     $ch = curl_init(); 
                     // Set cURL options 
@@ -109,6 +109,12 @@
                 function creaCardViaggi($viaggi){
                     $i = 0;
                     $viaggiArr = $viaggi['viaggi'];
+                    //verifichiamo che ci siano dei viaggi nel json, in caso non ci sono viene mostrato un avviso
+                    if($viaggiArr[0] == 'empty') {
+                        include 'noViaggi.php';
+                        die;
+                    } 
+                    
                     while($i < count($viaggi['viaggi'])){
                         $card = "";
                         //echo "<br>Viaggi arr: ".print_r($viaggiArr);
@@ -135,7 +141,7 @@
                         $card .= "<div class='p-3' id='comandi'><button type='button' id='expand' onclick=openMap('n$i') class='btn btn-outline p-2' data-bs-toggle='offcanvas' data-bs-target='#n$i' aria-controls='offcanvasTop'><img src='../Icone/expand-more.svg' alt='Mostra' role='button'></button></div>";
                         $card .= "</div>";
                         $card .= "<div class='offcanvas offcanvas-top' data-bs-backdrop='static' tabindex='-1' id='n$i' aria-labelledby='offcanvasTopLabel'>
-                        <div class='offcanvas-header'>
+                        <div class='offcanvas-header' style = 'justify-content: end;'>
                             <button type='button' class='btn-close' id='btnMapClose' onclick=closeMap('n$i') data-bs-dismiss='offcanvas' aria-label='Close'></button>
                         </div>
                         <div class='offcanvas-body'>
