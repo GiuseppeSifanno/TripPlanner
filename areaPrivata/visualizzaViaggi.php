@@ -141,17 +141,18 @@
                         $card .= "<div class='p-3' id='comandi'><button type='button' id='expand' onclick=openMap('n$i') class='btn btn-outline p-2' data-bs-toggle='offcanvas' data-bs-target='#n$i' aria-controls='offcanvasTop'><img src='../Icone/expand-more.svg' alt='Mostra' role='button'></button></div>";
                         $card .= "</div>";
                         $card .= "<div class='offcanvas offcanvas-top' data-bs-backdrop='static' tabindex='-1' id='n$i' aria-labelledby='offcanvasTopLabel'>
-                        <div class='offcanvas-header' style = 'justify-content: end;'>
+                        <div class='offcanvas-header'>
+                            <h4>Mappa: ". $viaggio['nomeViaggio'] ."</h4>
                             <button type='button' class='btn-close' id='btnMapClose' onclick=closeMap('n$i') data-bs-dismiss='offcanvas' aria-label='Close'></button>
                         </div>
                         <div class='offcanvas-body'>
-                            <iframe width='100%' height='300px' frameborder='0' allowfullscreen allow='geolocation'
-                            src='//umap.openstreetmap.fr/it/map/prova2_1071523?scaleControl=false&miniMap=false&scrollWheelZoom=true&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true'></iframe>
-                            <p>
-                            <!-- cambiare il link all'src e href in maniera dinamica-->
-                            <a
-                                href='//umap.openstreetmap.fr/it/map/prova2_1071523?scaleControl=false&miniMap=false&scrollWheelZoom=true&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true'>Visualizza
-                                a schermo intero</a></p></div></div>";
+                        <iframe width='100%' height='300px' frameborder='0' allowfullscreen allow='geolocation' 
+                            src='//umap.openstreetmap.fr/it/map/estate2k24_1079843?scaleControl=false&miniMap=false&scrollWheelZoom=true&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true&editinosmControl=false'></iframe>
+                        <p>
+                            <a href='//umap.openstreetmap.fr/it/map/estate2k24_1079843?scaleControl=false&miniMap=false&scrollWheelZoom=true&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true&editinosmControl=false'>
+                                Visualizza a schermo intero
+                            </a>
+                        </p>";
                         $i++;
                         echo $card;
                     }

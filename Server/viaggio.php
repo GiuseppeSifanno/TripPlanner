@@ -9,7 +9,7 @@
 
     if(doPost($params)){
         header("refresh:5; url=/TripPlanner/areaPrivata/creaViaggio.php");
-        echo "<script>alert('Viaggio creato con seccesso');</script>";
+        echo "<script>alert('Viaggio creato con successo');</script>";
     } 
     else {
         ob_start();
@@ -20,7 +20,7 @@
 
     function doPost($params){
         
-        $url = 'https://script.google.com/macros/s/AKfycbzeydAcngR0EbZJRocsJnlM3tSCCcfDjOF_D6eBIQ4g-P5YAmj9F0vl7i2Q98Ch07JsNw/exec';
+        $url = 'https://script.google.com/macros/s/AKfycbx8xDBsOeoCTWt09tnOZA1yOuhtQjuDOhHQcMW_hJtgdrLggaVfZ2uFwCIFeROGaAlSmQ/exec';
         
         $ch = curl_init(); 
 
@@ -31,16 +31,18 @@
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params)); 
         
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
-        
+
         // Execute cURL session 
         if($response = curl_exec($ch)){
-            //echo $response;
-            $response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             // Close cURL session 
             curl_close($ch);
-            if($response == 200) return true;
-            else return false;
-        }
+            return true;
+        } 
+        else {
+            // Close cURL session 
+            curl_close($ch);
+            return false;
+        } 
     }
 
     function getHash(){
